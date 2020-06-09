@@ -1,0 +1,8 @@
+{
+    "name": "commey/xendisms",
+    "type": "project",
+    "require": {
+        "twig/twig": "2",
+        "nikic/fast-route": "^1.3"
+    }
+}
