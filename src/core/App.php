@@ -14,7 +14,8 @@ class App {
 		$this->config = $config;
 		$loader = new Twig_Loader_Filesystem('../src/views');
 		$this->twig = new Twig_Environment($loader, array(
-		    'cache' => '../src/cache'
+		    'cache' => '../src/cache',
+		    'debug' => $config->environment === self::DEVELOPMENT
 		));
 		$this->twig->addGlobal("url", $config->url);
 	}
