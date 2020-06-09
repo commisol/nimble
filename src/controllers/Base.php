@@ -5,12 +5,11 @@ class Base extends App
 	protected $app;
 
 	function __construct(){
-		parent::__construct();
+		$this->app = parent::init()->run();
 	}
 
-	public function dashboard($value='')
-	{
-		echo $this->app->render('dashboard.html', array('name' => 'Fabien'));
+	public function dashboard($value=''){
+		echo $this::$app->render('dashboard.html', array('name' => 'Fabien'));
 	}
 
 	public function test($value='')

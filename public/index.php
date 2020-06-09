@@ -23,17 +23,17 @@ spl_autoload_register("Loader::load");
 # Constants
 const APPROOT = __DIR__."/../";
 
-# Start Router
-Router::init();
-
-$app = new App();
+		//var_dump($config);
 
 # Run Application
-$app->run($config);
+App::init($config);
 
+# Start Router
+Router::init();
+/*
 if($app->development()){
 	error_reporting(E_ALL);
 	ini_set('display_errors', 'On');
-}
+}*/
 
 ?>

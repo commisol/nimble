@@ -5,22 +5,33 @@ class App {
 	const DEVELOPMENT = "development";
 	const PRODUCTION = "production";
 
-	protected $app;
-	protected $config;
+	private static $app = null;
+	
+	private $config;
+	protected $twig;
 
-	function __construct(){
-		$loader = new Twig_Loader_Filesystem('../src/views');
-		$this->app = new Twig_Environment($loader, array(
-		    'cache' => '../src/cache',
-		));
-	}
-
-	function run($config){
+	function __construct($config){
 		$this->config = $config;
-		$this->app->addGlobal("url", $config->url);
+		$loader = new Twig_Loader_Filesystem('../src/views');
+		$this->twig = new Twig_Environment($loader, array(
+		    'cache' => '../src/cache'
+		));
+		$this->twig->addGlobal("url", $config->url);
 	}
 
-	function config(mixed $value){
+	function run($value=''){
+		return $this->twig;
+	}
+
+	static function init($config = null){
+
+		if(self::$app == null){
+			self::$app = new App($config);
+		}
+		return self::$app;
+	}
+
+	function configure(mixed $value){
 		if(is_object($value)){
 			$this->config = $value;
 			return $this;
@@ -28,7 +39,7 @@ class App {
 		return $this->config->value ?? null;
 	}
 
-	function development(){
-		return $this->config->environment === self::DEVELOPMENT;
+	static function development(){
+		return self::$config->environment === self::DEVELOPMENT;
 	}
 }
