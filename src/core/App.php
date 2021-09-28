@@ -1,4 +1,6 @@
 <?php 
+use \Twig\Environment AS TwigEnvironment;
+use \Twig\Loader\FilesystemLoader;
 
 class App {
 	
@@ -12,8 +14,8 @@ class App {
 
 	function __construct($config){
 		$this->config = $config;
-		$loader = new Twig_Loader_Filesystem('../src/views');
-		$this->twig = new Twig_Environment($loader, array(
+		$loader = new FilesystemLoader('../src/views');
+		$this->twig = new TwigEnvironment($loader, array(
 		    'cache' => '../src/cache',
 		    'debug' => $config->environment === self::DEVELOPMENT
 		));

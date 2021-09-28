@@ -2,7 +2,7 @@
     "name": "commey/xendisms",
     "type": "project",
     "require": {
-        "twig/twig": "2",
+        "twig/twig": "^3.0",
         "nikic/fast-route": "^1.3"
     }
 }
